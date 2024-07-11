@@ -22,7 +22,9 @@ class TeacherRepositoryTest {
         Course course1 = Course.builder().courseTitle("Algos").credit(4).build();
         Course course2 = Course.builder().courseTitle("Architecture").credit(3).build();
         Teacher teacher = Teacher.builder().firstName("John").
-                lastName("Doe").courses(List.of(course1, course2)).build();
+                lastName("Doe")
+                //.courses(List.of(course1, course2))
+                .build();
         teacherRepository.save(teacher);
     }
 }
