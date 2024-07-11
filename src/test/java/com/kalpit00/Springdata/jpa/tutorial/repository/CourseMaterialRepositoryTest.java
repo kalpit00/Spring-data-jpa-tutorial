@@ -18,7 +18,7 @@ class CourseMaterialRepositoryTest {
 
     @Test
     public void saveCourseMaterial() {
-        Course course = Course.builder().courseTitle("DSA").credit(3).build();
+        Course course = Course.builder().courseTitle(".net").credit(3).build();
         CourseMaterial courseMaterial = CourseMaterial.builder().url("google").course(course).build();
         courseMaterialRepository.save(courseMaterial);
     }

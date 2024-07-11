@@ -25,7 +25,8 @@ public class CourseMaterial {
 
     @OneToOne(
             cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY // lazy does not fetch the parent course! EAGER does
+            fetch = FetchType.LAZY, // lazy does not fetch the parent course! EAGER does
+            optional = true
     )
     @JoinColumn( // now course material has an extra column which species its "course_id" from another entity!
             name = "course_id",
