@@ -2,6 +2,7 @@ package com.kalpit00.Springdata.jpa.tutorial.repository;
 
 import com.kalpit00.Springdata.jpa.tutorial.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -21,5 +22,10 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     List<Student> findByLastNameNotNull();
     List<Student> findByGuardianName(String guardianName);
     List<Student> findByFirstNameAndLastName(String firstName, String lastName);
+    // JPQL queries = similar to SQL queries, they are based on CLASS attributes, NOT Table names
+    @Query("select s from Student s where s.emailId = ?1") // ?1 == first parameter, ?2 == second param..
+    Student getStudentByEmailAddress(String emailId);
 
+    @Query("select s.firstName from Student s where s.emailId = ?1")
+    String getStudentFirstNameByEmailAddress(String emailId);
 }
