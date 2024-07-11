@@ -2,6 +2,7 @@ package com.kalpit00.Springdata.jpa.tutorial.repository;
 
 import com.kalpit00.Springdata.jpa.tutorial.entity.Guardian;
 import com.kalpit00.Springdata.jpa.tutorial.entity.Student;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,10 +25,11 @@ class StudentRepositoryTest {
 //    }
 
     @Test
+    @Disabled
     public void saveStudentWithGuardian() {
         Guardian guardian = Guardian.builder().name("Father").email("Father@gmail.com").
                 mobile("123456789").build();
-        Student student = Student.builder().emailId("kalpit2@gmail.com").firstName("Kalpit").
+        Student student = Student.builder().emailId("1").firstName("Keith").
                 lastName("Patel").guardian(guardian).build();
         studentRepository.save(student);
     }
@@ -35,6 +37,49 @@ class StudentRepositoryTest {
     @Test
     public void printAllStudent() {
         List<Student> studentList = studentRepository.findAll();
-        System.out.println("studentList = " + studentList);
+        for (Student student : studentList) {
+            System.out.println("student = " + student);
+        }
+    }
+
+    @Test
+    public void printStudentByFirstName() {
+        List<Student> studentList = studentRepository.findByFirstName("John");
+        for (Student student : studentList) {
+            System.out.println("student = " + student);
+        }
+    }
+
+    @Test
+    public void printStudentByFirstNameContaining() {
+        List<Student> studentList = studentRepository.findByFirstNameContaining("K");
+        for (Student student : studentList) {
+            System.out.println("student = " + student);
+        }
+    }
+
+
+    @Test
+    public void printStudentByLastNameNonNull() {
+        List<Student> studentList = studentRepository.findByLastNameNotNull();
+        for (Student student : studentList) {
+            System.out.println("student = " + student);
+        }
+    }
+
+    @Test
+    public void printStudentByGuardianName() {
+        List<Student> studentList = studentRepository.findByGuardianName("Father");
+        for (Student student : studentList) {
+            System.out.println("student = " + student);
+        }
+    }
+
+    @Test
+    public void printStudentByFirstNameAndLastName() {
+        List<Student> studentList = studentRepository.findByFirstNameAndLastName("Kalpit", "Patel");
+        for (Student student : studentList) {
+            System.out.println("student = " + student);
+        }
     }
 }
