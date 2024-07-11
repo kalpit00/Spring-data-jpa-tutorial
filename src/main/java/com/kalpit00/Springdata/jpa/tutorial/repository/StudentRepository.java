@@ -22,10 +22,19 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     List<Student> findByLastNameNotNull();
     List<Student> findByGuardianName(String guardianName);
     List<Student> findByFirstNameAndLastName(String firstName, String lastName);
+
     // JPQL queries = similar to SQL queries, they are based on CLASS attributes, NOT Table names
     @Query("select s from Student s where s.emailId = ?1") // ?1 == first parameter, ?2 == second param..
     Student getStudentByEmailAddress(String emailId);
 
     @Query("select s.firstName from Student s where s.emailId = ?1")
     String getStudentFirstNameByEmailAddress(String emailId);
+
+    // Native SQL Query! add nativeQuery = true field and inject query using TABLE names, NOT class names
+    @Query(
+            value = "SELECT * FROM tbl_student s where s.email_address = ?1",
+            nativeQuery = true
+    )
+    Student getStudentByEmailAddressNative(String emailId);
+
 }
