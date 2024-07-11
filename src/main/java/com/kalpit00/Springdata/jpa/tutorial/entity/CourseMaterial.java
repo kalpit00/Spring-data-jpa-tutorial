@@ -25,7 +25,9 @@ public class CourseMaterial {
     private Long courseMaterialId;
     private String url;
 
-    @OneToOne
+    @OneToOne(
+            cascade = CascadeType.ALL
+    )
     @JoinColumn( // now course material has an extra column which species its "course_id" from another entity!
             name = "course_id",
             referencedColumnName = "courseId"
