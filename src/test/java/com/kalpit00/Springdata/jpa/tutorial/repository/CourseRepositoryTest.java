@@ -1,6 +1,7 @@
 package com.kalpit00.Springdata.jpa.tutorial.repository;
 
 import com.kalpit00.Springdata.jpa.tutorial.entity.Course;
+import com.kalpit00.Springdata.jpa.tutorial.entity.Student;
 import com.kalpit00.Springdata.jpa.tutorial.entity.Teacher;
 import org.junit.jupiter.api.Test;
 import org.springframework.data.domain.Pageable;
@@ -71,5 +72,14 @@ class CourseRepositoryTest {
         for (Course course : courses) {
             System.out.println(course);
         }
+    }
+
+    @Test
+    public void saveCourseWithStudentAndTeacher() {
+        Teacher teacher = Teacher.builder().firstName("Bob").lastName("Miller").build();
+        Course course = Course.builder().courseTitle("AI").credit(12).teacher(teacher).build();
+        Student student = Student.builder().firstName("Kalpit").lastName("Patel").emailId("kalpit").build();
+        course.addStudents(student);
+        courseRepository.save(course);
     }
 }
