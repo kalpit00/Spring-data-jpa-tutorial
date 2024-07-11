@@ -1,4 +1,6 @@
-Spring Boot JPA Tutorial
+Spring Boot JPA Hibernate Tutorial
+
+Junit testing of the Repository Layer
 
 1. Mapping entities with DB
 2. Different JPA Annotations
@@ -6,9 +8,9 @@ Spring Boot JPA Tutorial
 4. @Embeddable and @Embedded
 
 5. JPA @Query Annotation
-6. Native Queries Example
-7. Query Named Params
-8. @Transactional & @Modifying Annotation
+6. Custom Native Queries
+7. Query Named Native Params
+8. @Transactional & @Modifying Annotations
 
 9. JPA One to One Relationship
 10. Fetch Types
